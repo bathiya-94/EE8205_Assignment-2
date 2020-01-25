@@ -1,7 +1,7 @@
 package com.ruhuna.efac.mobilephonesapi.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
+
 
 import java.util.Set;
 
@@ -10,7 +10,7 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private  Long id;
+    private  long id;
     private  String name;
     private  String email;
 
@@ -33,7 +33,7 @@ public class User {
 
     public  User (){};
 
-    public User(Long id, String name, String email) {
+    public User(long id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -43,7 +43,7 @@ public class User {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

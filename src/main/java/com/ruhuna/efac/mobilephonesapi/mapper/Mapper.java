@@ -7,7 +7,9 @@ import com.ruhuna.efac.mobilephonesapi.viewModels.PhoneViewModel;
 import com.ruhuna.efac.mobilephonesapi.viewModels.UserViewModel;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.Null;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -57,13 +59,13 @@ public class Mapper {
     {
         User user;
 
-        if (userViewModel.getId() !=null)
+        if (userViewModel.getId() == null)
         {
-            user = userRepository.findById(userViewModel.getId()).get();
+            user = new User();
         }
-        else
-            {
-                user = new User();
+        else {
+
+            user = userRepository.findById(userViewModel.getId()).get();
             }
 
         user.setName(userViewModel.getName());
