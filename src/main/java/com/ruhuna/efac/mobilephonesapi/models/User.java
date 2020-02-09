@@ -13,6 +13,8 @@ public class User {
     private  long id;
     private  String name;
     private  String email;
+    private  String password;
+    private  String roles;
 
     @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST,
             CascadeType.MERGE})
@@ -31,12 +33,31 @@ public class User {
             })
     private Set<Phone> favPhones;
 
-    public  User (){};
+    public User() {
+    }
 
-    public User(long id, String name, String email) {
-        this.id = id;
+    public  User (String name, String email, String password, String role)
+    {
         this.name = name;
         this.email = email;
+        this.password = password;
+        this.roles = role;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
     public long getId() {

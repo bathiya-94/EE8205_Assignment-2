@@ -5,6 +5,7 @@ import com.ruhuna.efac.mobilephonesapi.models.Phone;
 import com.ruhuna.efac.mobilephonesapi.models.User;
 import com.ruhuna.efac.mobilephonesapi.viewModels.PhoneViewModel;
 import com.ruhuna.efac.mobilephonesapi.viewModels.UserViewModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.Null;

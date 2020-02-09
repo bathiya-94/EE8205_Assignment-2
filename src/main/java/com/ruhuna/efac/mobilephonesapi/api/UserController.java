@@ -1,50 +1,40 @@
 package com.ruhuna.efac.mobilephonesapi.api;
 
-import com.ruhuna.efac.mobilephonesapi.db.UserRepository;
-import com.ruhuna.efac.mobilephonesapi.mapper.Mapper;
-import com.ruhuna.efac.mobilephonesapi.models.User;
+
+import com.ruhuna.efac.mobilephonesapi.services.UserService;
 import com.ruhuna.efac.mobilephonesapi.viewModels.UserViewModel;
+
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityNotFoundException;
+;
 import javax.xml.bind.ValidationException;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 @RestController
-@RequestMapping(value = "api/users/")
+@RequestMapping(value = "user/")
 public class UserController {
 
-    private Mapper mapper;
-    private UserRepository userRepository;
 
-    public UserController(Mapper mapper, UserRepository userRepository) {
-        this.mapper = mapper;
-        this.userRepository = userRepository;
+    private UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @RequestMapping(value="/all" ,method = GET)
     public List<UserViewModel> getAll(){
-        return userRepository.findAll()
-                .stream().map(user ->
-                    this.mapper.convertToUserViewModel(user)
-                ).collect(Collectors.toList());
+        return userService.getAllUsers();
     }
 
     @RequestMapping(value = "/{id}", method = GET)
     public UserViewModel getById(@PathVariable Long id)
     {
-        User user = userRepository.findById(id).orElse(null);
-
-        if (user == null)
-        {
-            throw  new EntityNotFoundException();
-        }
-        return  this.mapper.convertToUserViewModel(user);
+        return  userService.geUserById(id);
     }
 
     @RequestMapping(value ="/save", method =  POST)
@@ -54,18 +44,13 @@ public class UserController {
         {
             throw  new ValidationException("User");
         }
-
-        System.out.println(userViewModel.getId());
-
-        User user  = this.mapper.convertToUser(userViewModel);
-        this.userRepository.save(user);
-
-        return  this.mapper.convertToUserViewModel(user);
+        return  userService.saveUser(userViewModel);
     }
 
     @DeleteMapping("{/id}")
     public  void delete(@PathVariable Long id)
     {
-        this.userRepository.deleteById(id);
+
+        this.userService.deleteUser(id);
     }
 }
