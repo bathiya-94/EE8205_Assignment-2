@@ -35,6 +35,13 @@ public class PhoneService {
                 ).collect(Collectors.toList());
     }
 
+    public  List<PhoneViewModel> getByModelName(String modelName){
+        return phoneRepository.getByModelName(modelName)
+                .stream().map(phone ->
+                        this.mapper.convertToPhoneViewModel(phone)
+                ).collect(Collectors.toList());
+    }
+
     public PhoneViewModel saveUser(PhoneViewModel phoneViewModel)
     {
         Phone phone = this.mapper.convertToPhone(phoneViewModel);

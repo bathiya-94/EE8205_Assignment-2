@@ -29,14 +29,18 @@ public class PhoneController {
         return phoneService.getAllPhones();
     }
 
-    @RequestMapping(value = "/{brand}", method = GET)
-    public List<PhoneViewModel> getById(@PathVariable String brand)
+    @RequestMapping(value = "/brands/{brand}", method = GET)
+    public List<PhoneViewModel> getByBrand(@PathVariable String brand)
     {
         return  phoneService.getByBrand(brand);
     }
 
-//    @RequestMapping(value="/addPhone", method=POST)
-//    public l
+    @RequestMapping(value = "/models/{modelName}", method = GET)
+    public List<PhoneViewModel> getByModelName(@PathVariable String modelName)
+    {
+        return  phoneService.getByModelName(modelName);
+    }
+
 
 
 

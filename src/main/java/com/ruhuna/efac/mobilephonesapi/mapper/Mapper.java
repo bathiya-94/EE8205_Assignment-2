@@ -76,12 +76,12 @@ public class Mapper {
 
         Set<Phone> Phones = userViewModel.getFavPhones().stream()
                                         .map(PhoneViewModel ->{
-                                            Phone Phone =PhoneRepository.findByModelName(
+                                            Phone phone =PhoneRepository.findByModelName(
                                                     PhoneViewModel.getModelName()
                                             );
 
-                                            Phone.getUserList().add(user);
-                                            return  Phone;
+                                            phone.getUserList().add(user);
+                                            return  phone;
                                         }).collect(Collectors.toSet());
         user.setFavPhones(Phones);
         return user;

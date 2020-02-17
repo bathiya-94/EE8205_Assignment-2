@@ -8,5 +8,6 @@ import java.util.List;
 public interface PhoneRepository extends JpaRepository<Phone,Long> {
     Phone findByModelName(String modelName);
     List<Phone> findByBrand(String brand);
+    List<Phone> getByModelName(String modelName);
 
 }
