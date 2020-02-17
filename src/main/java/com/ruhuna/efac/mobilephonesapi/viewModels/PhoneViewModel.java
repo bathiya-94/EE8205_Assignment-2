@@ -16,6 +16,8 @@ public class PhoneViewModel {
     @NotNull
     private  String brand;
 
+    private  String image;
+
     private List<UserViewModel> users;
 
     public PhoneViewModel()
@@ -23,12 +25,21 @@ public class PhoneViewModel {
         this.users = new ArrayList<>();
     }
 
-    public PhoneViewModel(Long id, @NotNull String modelNo, @NotNull String modelName, @NotNull String brand) {
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public PhoneViewModel(Long id, @NotNull String modelNo, @NotNull String modelName, @NotNull String brand, String image) {
         this();
         this.id = id;
         this.modelNo = modelNo;
         this.modelName = modelName;
         this.brand = brand;
+        this.image = image;
     }
 
     public Long getId() {

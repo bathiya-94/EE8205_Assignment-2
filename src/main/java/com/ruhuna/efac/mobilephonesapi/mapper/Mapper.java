@@ -27,13 +27,15 @@ public class Mapper {
     public PhoneViewModel convertToPhoneViewModel(Phone Phone)
     {
         PhoneViewModel PhoneViewModel = new PhoneViewModel(Phone.getId(),Phone.getModelNo(),
-                                                        Phone.getModelName(),Phone.getBrand());
+                                                        Phone.getModelName(),Phone.getBrand(),
+                                                            Phone.getImage());
         List<UserViewModel> userViewModels = Phone.getUserList().stream()
                                             .map(user -> {
                                                 UserViewModel userViewModel = new UserViewModel();
                                                 userViewModel.setId(user.getId());
                                                 userViewModel.setEmail(user.getEmail());
                                                 userViewModel.setName(user.getName());
+
 
                                                 return  userViewModel;
 
@@ -100,6 +102,7 @@ public class Mapper {
         Phone.setModelName(PhoneViewModel.getModelName());
         Phone.setBrand(PhoneViewModel.getBrand());
         Phone.setModelNo(PhoneViewModel.getModelNo());
+        Phone.setImage(PhoneViewModel.getImage());
 
         return Phone;
 

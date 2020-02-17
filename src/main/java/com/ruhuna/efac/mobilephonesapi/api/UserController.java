@@ -1,6 +1,7 @@
 package com.ruhuna.efac.mobilephonesapi.api;
 
 
+import com.ruhuna.efac.mobilephonesapi.models.LoginResponse;
 import com.ruhuna.efac.mobilephonesapi.services.UserService;
 import com.ruhuna.efac.mobilephonesapi.viewModels.UserViewModel;
 
@@ -54,5 +55,10 @@ public class UserController {
     {
 
         this.userService.deleteUser(id);
+    }
+
+    @GetMapping("/validateLogin")
+    public LoginResponse validateLogin(){
+        return  new LoginResponse("User successfully Authenticated");
     }
 }

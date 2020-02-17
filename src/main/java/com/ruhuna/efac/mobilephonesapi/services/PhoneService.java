@@ -2,7 +2,10 @@ package com.ruhuna.efac.mobilephonesapi.services;
 
 import com.ruhuna.efac.mobilephonesapi.db.PhoneRepository;
 import com.ruhuna.efac.mobilephonesapi.mapper.Mapper;
+import com.ruhuna.efac.mobilephonesapi.models.Phone;
+import com.ruhuna.efac.mobilephonesapi.models.User;
 import com.ruhuna.efac.mobilephonesapi.viewModels.PhoneViewModel;
+import com.ruhuna.efac.mobilephonesapi.viewModels.UserViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +35,13 @@ public class PhoneService {
                 ).collect(Collectors.toList());
     }
 
+    public PhoneViewModel saveUser(PhoneViewModel phoneViewModel)
+    {
+        Phone phone = this.mapper.convertToPhone(phoneViewModel);
+        this.phoneRepository.save(phone);
 
+        return  this.mapper.convertToPhoneViewModel(phone);
+    }
 
 
 }

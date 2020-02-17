@@ -41,10 +41,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class);
+        http.csrf().disable()
+                .authorizeRequests().antMatchers("/user/**");
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/phone").permitAll()
                 .antMatchers(HttpMethod.OPTIONS,"/user/**").hasAuthority("USER")
+                .antMatchers("/phone").permitAll()
                 .and().httpBasic()
                 .and().csrf().disable();
 

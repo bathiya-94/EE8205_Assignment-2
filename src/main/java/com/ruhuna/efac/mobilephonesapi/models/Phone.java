@@ -14,16 +14,27 @@ public class Phone {
     private  String modelName;
     private  String brand;
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    private  String image;
+
     @ManyToMany(mappedBy = "favPhones")
     private Set<User> userList = new HashSet<>();
 
     public Phone(){};
 
-    public Phone( String modelNo, String modelName, String brand)
+    public Phone( String modelNo, String modelName, String brand, String image)
     {
         this.modelNo = modelNo;
         this.modelName = modelName;
         this.brand = brand;
+        this.image = image;
     }
 
     public Set<User> getUserList()
