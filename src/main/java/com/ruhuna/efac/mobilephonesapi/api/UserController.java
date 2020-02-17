@@ -15,8 +15,10 @@ import java.util.List;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
+
 @RestController
-@RequestMapping(value = "user/")
+@RequestMapping(value = "/user")
+@CrossOrigin
 public class UserController {
 
 

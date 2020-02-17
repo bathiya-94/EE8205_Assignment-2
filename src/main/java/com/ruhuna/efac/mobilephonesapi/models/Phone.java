@@ -1,8 +1,6 @@
 package com.ruhuna.efac.mobilephonesapi.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,6 +8,7 @@ import java.util.Set;
 public class Phone {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private  Long id;
     private  String modelNo;
     private  String modelName;
@@ -20,9 +19,8 @@ public class Phone {
 
     public Phone(){};
 
-    public Phone(Long id, String modelNo, String modelName, String brand)
+    public Phone( String modelNo, String modelName, String brand)
     {
-        this.id =id;
         this.modelNo = modelNo;
         this.modelName = modelName;
         this.brand = brand;
